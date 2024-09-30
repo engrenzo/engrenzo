@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class StudentEnrollment {
+    public static void main(String[] args) {
+        
+        // Create a Scanner object to read user input
+        Scanner input = new Scanner(System.in);
+
+        // Input the student information
+        System.out.print("Enter student name: ");
+        String studentName = input.nextLine();
+
+        System.out.print("Enter course: ");
+        String course = input.nextLine();
+
+        System.out.print("Enter course code: ");
+        String courseCode = input.nextLine();
+
+        int numberOfUnits;
+        do {
+            System.out.print("Enter number of units (maximum 10): ");
+            numberOfUnits = input.nextInt();
+            input.nextLine();
+
+            if (numberOfUnits > 10) {
+                System.out.println("Maximum number of units exceeded. Please try again.");
+            }
+        } while (numberOfUnits > 10);
+
+        // Compute the enrollment fee
+        int feePerUnit = 1000;
+        int totalEnrollmentFee = numberOfUnits * feePerUnit;
+
+        // Display the student's name and total enrollment fee
+        System.out.println("\nStudent Name: " + studentName);
+        System.out.println("Course: " + course);
+        System.out.println("Course Code: " + courseCode);
+        System.out.println("Number of Units: " + numberOfUnits);
+        System.out.println("Total Enrollment Fee: " + totalEnrollmentFee);
+
+        // Payment process
+        System.out.print("\nEnter payment amount: ");
+        int paymentAmount = input.nextInt();
+        input.nextLine();
+
+        if (paymentAmount == totalEnrollmentFee) {
+            System.out.println("Fully Paid");
+        } else if (paymentAmount < totalEnrollmentFee) {
+            int amountPaid = paymentAmount;
+            System.out.println("Partial Payment");
+            System.out.println("Amount Paid: " + amountPaid);
+            System.out.println("Remaining Balance: " + (totalEnrollmentFee - amountPaid));
+        } else {
+            System.out.println("Invalid payment amount.");
+        }
+
+        // Close the Scanner object
+        input.close();
+    }
+}
